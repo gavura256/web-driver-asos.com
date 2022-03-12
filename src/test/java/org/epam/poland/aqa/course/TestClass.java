@@ -1,6 +1,8 @@
 package org.epam.poland.aqa.course;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.epam.poland.aqa.course.pageobject.BasePage;
+import org.epam.poland.aqa.course.pageobject.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,69 +18,23 @@ import java.time.Duration;
 import static org.epam.poland.aqa.course.props.Properties.GIT_HUB_LOGIN;
 import static org.epam.poland.aqa.course.props.Properties.GIT_HUB_PASSWORD;
 
-public class TestClass {
+public class TestClass extends BaseTest {
 
-    @Test
-    public void test() {
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-        WebDriverManager.chromedriver().browserVersion("97").setup();
-        WebDriver driver = new ChromeDriver();
-
-        driver.get("https://www.amazon.com/");
-
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.amazon.com/",
-                "The current link is not as expected");
-
-        WebElement searchField = driver.findElement(By.id("twotabsearchtextbox"));
-        searchField.sendKeys("laptop");
-
-        WebElement searchButton = driver.findElement(By.id("nav-search-submit-button"));
-        searchButton.click();
-
-        WebElement searchResult = driver.findElement(By.xpath("//div[@class='sg-col-inner\"]//span[text()='\"laptop\"']"));
-        Assert.assertTrue(searchResult.getText().contains("laptop"));
-
-        driver.close();
-        driver.quit();
-    }
 
     @Test
     public void gitHubLoginTest() {
-        WebDriverManager.chromedriver().browserVersion("97").setup();
-        WebDriver driver = new ChromeDriver();
+        LoginPage loginPage = new LoginPage(webDriver);
+        String userName = loginPage.open()
+                .login(GIT_HUB_LOGIN, GIT_HUB_PASSWORD)
+                .openProfileDropDown()
+                .getUserNameInfo();
 
-        driver.manage().window().maximize();
-
-        driver.get("https://www.github.com/login");
-
-        WebElement loginField = driver.findElement(By.id("login_field"));
-        loginField.sendKeys(GIT_HUB_LOGIN);
-
-        WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys(GIT_HUB_PASSWORD);
-
-        WebElement sighInButton = driver.findElement(By.name("commit"));
-        sighInButton.click();
-
-        Assert.assertEquals(driver.getCurrentUrl(), "https://github.com/",
-                "Actual url is not correct");
-
-        WebElement profileDropDown = driver.findElement(By.xpath("//summary[@class=\"Header-link\"]/img"));
-        profileDropDown.click();
-
-//        WebElement userInfo = driver.findElement(By.xpath("//strong[text()=\"juliaHrabovska\"]"));
-        WebElement userInfo = new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[text()=\"juliaHrabovska\"]")));
-        Assert.assertEquals(userInfo.getText(), "juliaHrabovska",
-                "User name is not correct");
-
-        driver.close();
-        driver.quit();
+        Assert.assertEquals(userName, "gavura256");
     }
 
     @DataProvider(name = "wrongData")
     public Object[][] wrongData() {
-        return new Object[][] {
+        return new Object[][]{
                 {"qwerty", GIT_HUB_PASSWORD},
                 {GIT_HUB_LOGIN, "qwertyui"},
                 {"qwertyu", "qwer5678"}
