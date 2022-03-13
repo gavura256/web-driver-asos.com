@@ -9,6 +9,7 @@ public class WebDriverFactory {
     public WebDriver getWebDriver(){
         String propertyValue = new PropertyHolder().readProperty("browser");
         SupportedBrowsers browser = SupportedBrowserConverter.valueOfWebBrowser(propertyValue);
+
         return browser.getWebDriver();
     }
 }
