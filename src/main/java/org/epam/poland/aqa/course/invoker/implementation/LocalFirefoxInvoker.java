@@ -11,6 +11,7 @@ public class LocalFirefoxInvoker implements WebDriverInvoker {
 //        WebDriverManager.firefoxdriver()
 //                .browserVersion("99")
 //                .setup();
+
         return new FirefoxDriver();
     }
 }

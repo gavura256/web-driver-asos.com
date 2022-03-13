@@ -11,6 +11,7 @@ public class LocalChromeInvoker implements WebDriverInvoker {
         WebDriverManager.chromedriver()
                 .browserVersion("99")
                 .setup();
+
         return new ChromeDriver();
     }
 }
