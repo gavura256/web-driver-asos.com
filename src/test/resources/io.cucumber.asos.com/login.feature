@@ -1,4 +1,4 @@
-Feature: User should login in with valid data and should sign out
+Feature: User cannot create a doppelganger account and should login in with valid data and should sign out
 
   Scenario: Create new user with valid credentials
     Given I am on the join page
