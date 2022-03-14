@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class OutletPopUp extends BasePage {
-    @FindBy(xpath = "//a[@href[substring(.,string-length(.) - string-length('outlet|shop+by+product|view+all') + 1) = 'outlet|shop+by+product|view+all']]")
+public class DressesPopUp extends BasePage {
+    @FindBy(xpath = "//a[@href[substring(.,string-length(.) - string-length('dresses|shop+by+type|view+all') + 1) = 'dresses|shop+by+type|view+all']]")
     WebElement viewAllButton;
 
-    public OutletPopUp(WebDriver webDriver) {
+    public DressesPopUp(WebDriver webDriver) {
         super(webDriver);
     }
 

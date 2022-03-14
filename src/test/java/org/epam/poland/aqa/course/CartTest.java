@@ -10,7 +10,6 @@ import org.epam.poland.aqa.course.pageobject.modules.MyBagPopUp;
 import org.epam.poland.aqa.course.pageobject.pages.HomePage;
 import org.epam.poland.aqa.course.pageobject.pages.MyBagPage;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
 
@@ -38,7 +37,7 @@ public class CartTest extends BaseTest {
         new CookiesWindow(webDriver).acceptAllCookies();
 
         return homePage.chooseWomenCategory()
-                .clickOnOutlet()
+                .clickOnDresses()
                 .clickOnViewAll()
                 .chooseDeliveryToUK()
                 .chooseTheFirstItem()
