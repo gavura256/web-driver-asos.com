@@ -1,7 +1,6 @@
 package org.epam.poland.aqa.course.pageobject.pages;
 
 import org.epam.poland.aqa.course.pageobject.BasePage;
-import org.epam.poland.aqa.course.pageobject.modules.CookiesWindow;
 import org.epam.poland.aqa.course.pageobject.modules.OutletPopUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +21,6 @@ public class HomePage extends BasePage {
 
     public HomePage open() {
         webDriver.get(ASOS_HOME_PAGE);
-        new CookiesWindow(webDriver).acceptAllCookies();
 
         return this;
     }

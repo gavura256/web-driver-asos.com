@@ -1,5 +1,6 @@
 package org.epam.poland.aqa.course;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,17 +8,24 @@ import io.cucumber.java.en.When;
 import org.epam.poland.aqa.course.pageobject.modules.CookiesWindow;
 import org.epam.poland.aqa.course.pageobject.modules.MyBagPopUp;
 import org.epam.poland.aqa.course.pageobject.pages.HomePage;
+import org.epam.poland.aqa.course.pageobject.pages.MyBagPage;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
+
     private final HomePage homePage = new HomePage(webDriver);
-    private MyBagPopUp myBagPopUp;
+    private final MyBagPopUp myBagPopUp = new MyBagPopUp(webDriver);
+    private final MyBagPage myBagPage = new MyBagPage(webDriver);
 
     @Before
-    public void classSetUp(){
-        webDriver.manage().window().maximize();
+    public void setUpCartTests() {
+        setUpDriver();
+    }
 
+    @After
+    public void tearsDown() {
+//        quit();
     }
 
     @Given("I am on home page")
@@ -27,17 +35,38 @@ public class CartTest extends BaseTest {
 
     @When("I add item to cart")
     public MyBagPopUp iAddItemToCart() {
+        new CookiesWindow(webDriver).acceptAllCookies();
+
         return homePage.chooseWomenCategory()
                 .clickOnOutlet()
                 .clickOnViewAll()
+                .chooseDeliveryToUK()
                 .chooseTheFirstItem()
+                .closeStudentDiscountWindow()
                 .chooseTheSize()
                 .addToMyBag();
     }
 
-    @Then("I should see pop-up window informs My bag consists of {} item")
-    public void iShouldSeePopUpWindowInformsMyBagConsists(int amountOfGoods) {
+    @Then("I should see pop-up window informs My bag consists of {string}")
+    @Test
+    public void iShouldSeePopUpWindowInformsMyBagConsists(String amountOfGoods) {
         Assert.assertEquals(amountOfGoods, myBagPopUp.quantityOfItemsInMyBag());
+    }
+
+    @Then("I go to My Bag")
+    public MyBagPage iGoToMyBag() {
+        return myBagPopUp.viewBag();
+    }
+
+    @When("I remove item from My Bag")
+    public MyBagPage iRemoveItemFromMyBag() {
+        return myBagPage.removeSingleItem();
+    }
+
+    @Then("I should see {string}")
+    public void iShouldSee(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 
 }
