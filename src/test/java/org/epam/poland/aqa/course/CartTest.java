@@ -25,7 +25,7 @@ public class CartTest extends BaseTest {
 
     @After
     public void tearsDown() {
-//        quit();
+        quit();
     }
 
     @Given("I am on home page")
@@ -48,7 +48,6 @@ public class CartTest extends BaseTest {
     }
 
     @Then("I should see pop-up window informs My bag consists of {string}")
-    @Test
     public void iShouldSeePopUpWindowInformsMyBagConsists(String amountOfGoods) {
         Assert.assertEquals(amountOfGoods, myBagPopUp.quantityOfItemsInMyBag());
     }
@@ -63,10 +62,9 @@ public class CartTest extends BaseTest {
         return myBagPage.removeSingleItem();
     }
 
-    @Then("I should see {string}")
+    @Then("I should see message {string}")
     public void iShouldSee(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertEquals(string, myBagPage.getEmptyMyBagMessage());
     }
 
 }

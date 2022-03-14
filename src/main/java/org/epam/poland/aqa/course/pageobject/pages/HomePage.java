@@ -18,7 +18,6 @@ public class HomePage extends BasePage {
         super(webDriver);
     }
 
-
     public HomePage open() {
         webDriver.get(ASOS_HOME_PAGE);
 

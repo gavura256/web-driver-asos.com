@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class StudentsDiscountWindow extends BasePage {
-
     public static final By CLOSE_STUDENT_DISCOUNT_WINDOW = By.id("att_lightbox_close");
 
     public StudentsDiscountWindow(WebDriver webDriver) {

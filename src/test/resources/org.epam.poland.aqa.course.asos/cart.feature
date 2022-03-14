@@ -10,4 +10,4 @@ Feature: Cart page
     When I add item to cart
     Then I go to My Bag
     And I remove item from My Bag
-    And I should see "Your bag is empty"
+    And I should see message "Your bag is empty"

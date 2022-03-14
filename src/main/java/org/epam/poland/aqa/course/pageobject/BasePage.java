@@ -18,6 +18,7 @@ public abstract class BasePage {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
+
     public WebElement waitForElement(By locator) {
         return new WebDriverWait(webDriver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
