@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage extends BasePage {
-    public static final String SIZE_TO_ADD_TO_MY_BAG = "XS - UK 6";
+    public static final int INDEX_TO_ADD_TO_MY_BAG = 1;
     @FindBy(id = "main-size-select-0")
     WebElement colorSizeSelector;
     @FindBy(xpath = "//button[@data-test-id=\"add-button\"]")
@@ -26,7 +26,7 @@ public class ProductPage extends BasePage {
 
     public ProductPage chooseTheSize() {
         Select dropdown = new Select(colorSizeSelector);
-        dropdown.selectByVisibleText(SIZE_TO_ADD_TO_MY_BAG);
+        dropdown.selectByIndex(INDEX_TO_ADD_TO_MY_BAG);
 
         return this;
     }
