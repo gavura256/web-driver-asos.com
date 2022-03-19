@@ -16,6 +16,7 @@ public enum SupportedBrowsers {
     }
 
     public WebDriver getWebDriver() {
+
         return webDriverInvoker.invokeWebDriver();
     }
 }
