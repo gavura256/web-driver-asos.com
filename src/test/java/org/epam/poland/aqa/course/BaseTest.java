@@ -1,6 +1,5 @@
 package org.epam.poland.aqa.course;
 
-import io.cucumber.java.BeforeAll;
 import org.epam.poland.aqa.course.factory.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 

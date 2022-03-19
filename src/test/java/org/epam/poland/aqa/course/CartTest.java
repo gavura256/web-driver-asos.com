@@ -9,6 +9,7 @@ import org.epam.poland.aqa.course.pageobject.modules.CookiesWindow;
 import org.epam.poland.aqa.course.pageobject.modules.MyBagPopUp;
 import org.epam.poland.aqa.course.pageobject.pages.HomePage;
 import org.epam.poland.aqa.course.pageobject.pages.MyBagPage;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class CartTest extends BaseTest {
@@ -34,7 +35,7 @@ public class CartTest extends BaseTest {
 
     @When("I add item to cart")
     public MyBagPopUp iAddItemToCart() {
-        new CookiesWindow(webDriver).acceptAllCookies();
+        acceptAllCookies();
 
         return homePage.chooseWomenCategory()
                 .clickOnDresses()
@@ -44,6 +45,10 @@ public class CartTest extends BaseTest {
                 .closeStudentDiscountWindow()
                 .chooseTheSize()
                 .addToMyBag();
+    }
+
+    private void acceptAllCookies() {
+        new CookiesWindow(webDriver).acceptAllCookies();
     }
 
     @Then("I should see pop-up window informs My bag consists of {string}")
