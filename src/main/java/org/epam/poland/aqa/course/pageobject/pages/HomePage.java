@@ -1,6 +1,8 @@
 package org.epam.poland.aqa.course.pageobject.pages;
 
 import org.epam.poland.aqa.course.pageobject.BasePage;
+import org.epam.poland.aqa.course.pageobject.modules.AccountDropDownMenu;
+import org.epam.poland.aqa.course.pageobject.modules.CookiesWindow;
 import org.epam.poland.aqa.course.pageobject.modules.SportswearPopUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +15,8 @@ public class HomePage extends BasePage {
     WebElement womenCategory;
     @FindBy(xpath = "//button[@data-testid=\"primarynav-button\"]/span/span[contains(text(),\"Sportswear\")]/../..")
     WebElement sportswearButton;
+    @FindBy(id = "myAccountDropdown")
+    WebElement accountDropDownMenuButton;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -34,5 +38,11 @@ public class HomePage extends BasePage {
         sportswearButton.click();
 
         return new SportswearPopUp(webDriver);
+    }
+
+    public AccountDropDownMenu clickOnAccountDropDownMenu() {
+        accountDropDownMenuButton.click();
+
+        return new AccountDropDownMenu(webDriver);
     }
 }

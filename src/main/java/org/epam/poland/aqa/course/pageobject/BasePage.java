@@ -19,8 +19,15 @@ public abstract class BasePage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public WebElement waitForElement(By locator) {
+    protected WebElement waitForElement(By locator) {
         return new WebDriverWait(webDriver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    protected WebElement waitForTheAppearanceOf(WebElement element) {
+        new WebDriverWait(webDriver, Duration.ofSeconds(EXPLICIT_WAIT))
+                .until(ExpectedConditions.visibilityOf(element));
+
+        return element;
     }
 }
