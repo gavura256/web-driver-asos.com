@@ -1,6 +1,6 @@
 Feature: Search goods
   Scenario: Search for goods when user enters correct data in the search field
-    Given I am on the home page
+    Given I am on home page
     When I search for “shirt”
     Then I see results contain “shirt” in descriptions
 

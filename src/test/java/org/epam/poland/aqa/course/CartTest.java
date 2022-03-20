@@ -5,26 +5,29 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.epam.poland.aqa.course.pageobject.modules.CookiesWindow;
 import org.epam.poland.aqa.course.pageobject.modules.MyBagPopUp;
 import org.epam.poland.aqa.course.pageobject.pages.HomePage;
 import org.epam.poland.aqa.course.pageobject.pages.MyBagPage;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class CartTest extends BaseTest {
+    private final HomePage homePage;
+    private final MyBagPopUp myBagPopUp;
+    private final MyBagPage myBagPage;
 
-    private final HomePage homePage = new HomePage(webDriver);
-    private final MyBagPopUp myBagPopUp = new MyBagPopUp(webDriver);
-    private final MyBagPage myBagPage = new MyBagPage(webDriver);
+    public CartTest() {
+        homePage = new HomePage(webDriver);
+        myBagPopUp = new MyBagPopUp(webDriver);
+        myBagPage = new MyBagPage(webDriver);
+    }
 
     @Before
-    public void setUpCartTests() {
+    public void setUp() {
         setUpDriver();
     }
 
     @After
-    public void tearsDown() {
+    public void tearDown() {
         quit();
     }
 
@@ -35,8 +38,6 @@ public class CartTest extends BaseTest {
 
     @When("I add item to cart")
     public MyBagPopUp iAddItemToCart() {
-        acceptAllCookies();
-
         return homePage.chooseWomenCategory()
                 .clickOnDresses()
                 .clickOnViewAll()
@@ -45,10 +46,6 @@ public class CartTest extends BaseTest {
                 .closeStudentDiscountWindow()
                 .chooseTheSize()
                 .addToMyBag();
-    }
-
-    private void acceptAllCookies() {
-        new CookiesWindow(webDriver).acceptAllCookies();
     }
 
     @Then("I should see pop-up window informs My bag consists of {string}")
